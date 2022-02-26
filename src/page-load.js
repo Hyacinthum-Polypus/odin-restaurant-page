@@ -14,6 +14,7 @@ const navComponent = function(...args)
         aElement.textContent = text;
         aElement.href = '#';
         listElement.appendChild(aElement);
+        ulElement.append(listElement);
     });
 
     return navElement;
@@ -38,6 +39,8 @@ const headerComponent = function()
     const headerElement = document.createElement('header');
     const logo = logoComponent('#', 'Restaurant');
     const nav = navComponent('Home', 'Menu', 'About Us', 'Contact Us', 'Jobs');
+    headerElement.appendChild(logo);
+    headerElement.appendChild(nav);
     return headerElement;
 }
 
@@ -87,12 +90,23 @@ const footerComponent = function()
     return footerElement;
 }
 
-const pageGen = function()
+const loadHome = function()
 {
+    console.log("Loading home!")
     const content = document.getElementById('content');
     content.appendChild(headerComponent());
     content.appendChild(mainComponent());
     content.appendChild(footerComponent());
 }
 
-export default pageGen;
+const loadMenu = function()
+{
+    console.log("Loading menus!");
+}
+
+const loadContact = function()
+{
+    console.log("loading contacts!");
+}
+
+export {loadHome, loadMenu, loadContact};

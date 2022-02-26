@@ -15,14 +15,17 @@ function switchTab(tab)
     {
         case 'Home':
             loadHome();
+            document.querySelectorAll('nav a').forEach(aElement => aElement.addEventListener('click', () => switchTab(aElement.textContent)));
         break;
         case 'Menu':
             loadMenu();
+            document.querySelectorAll('nav a').forEach(aElement => aElement.addEventListener('click', () => switchTab(aElement.textContent)));
         break;
         case 'Contact Us':
             loadContact();
+            document.querySelectorAll('nav a').forEach(aElement => aElement.addEventListener('click', () => switchTab(aElement.textContent)));
         break;
     }
 }
 
-loadHome();
+switchTab('Home');

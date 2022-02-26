@@ -1,1 +1,3 @@
-console.log("Alert!");
+import pageLoad from "./page-load";
+
+pageLoad();

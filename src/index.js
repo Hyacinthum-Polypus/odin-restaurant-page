@@ -1,10 +1,12 @@
-import {loadHome, loadMenu, loadContact} from "./page-load";
+import {loadHome, loadMenu, loadContact, load404} from "./page-load";
 
 function clearContent()
 {
+    console.log("Clearning!");
     const content = document.getElementById('content');
-    const children = document.childNodes;
-    children.forEach(child => child.remove());
+    const children = content.childNodes;
+    console.log(children);
+    for(let i = 0; i < children.length;) children[0].remove();
 }
 
 function switchTab(tab)
@@ -15,17 +17,20 @@ function switchTab(tab)
     {
         case 'Home':
             loadHome();
-            document.querySelectorAll('nav a').forEach(aElement => aElement.addEventListener('click', () => switchTab(aElement.textContent)));
         break;
         case 'Menu':
             loadMenu();
-            document.querySelectorAll('nav a').forEach(aElement => aElement.addEventListener('click', () => switchTab(aElement.textContent)));
         break;
         case 'Contact Us':
             loadContact();
-            document.querySelectorAll('nav a').forEach(aElement => aElement.addEventListener('click', () => switchTab(aElement.textContent)));
+        break;
+        default:
+            load404();
         break;
     }
+
+    document.querySelectorAll('nav a').forEach(aElement => aElement.addEventListener('click', () => switchTab(aElement.textContent)));
+
 }
 
 switchTab('Home');

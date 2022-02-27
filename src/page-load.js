@@ -62,7 +62,7 @@ const ctaComponent = function()
     return ctaElement;
 }
 
-const mainComponent = function()
+const mainHomeComponent = function()
 {
     const mainElement = document.createElement('main');
     const mainHeading = document.createElement('h2');
@@ -83,6 +83,69 @@ const mainComponent = function()
     return mainElement;
 }
 
+const mainContactComponent = function()
+{
+    const mainElement = document.createElement('main');
+    const mainHeading = document.createElement('h2');
+    mainHeading.textContent = "Contact Us";
+    const mainParagraph = document.createElement('p');
+    mainParagraph.textContent = "You can contact us at the below addresses."
+    const list = document.createElement('ul');
+    const email = document.createElement('li');
+    email.textContent = "Contacts us via email at the address Restaurant@GlobalRestaurants.com";
+    const phone = document.createElement('li');
+    phone.textContent = "Ring us over the phone at 0456667891";
+    const address = document.createElement('li');
+    address.textContent = "Mail a letter to our physical mailing address at Arkham 123 Behind You St, 2333";
+
+    list.appendChild(email); list.appendChild(phone); list.appendChild(address);
+
+    mainElement.appendChild(mainHeading); mainElement.appendChild(mainParagraph); mainElement.appendChild(list);
+
+    return mainElement;
+}
+
+const foodItemComponent = function(name, imageSrc, description)
+{
+    const foodItem = document.createElement('div');
+    const foodName = document.createElement('h3');
+    foodName.textContent = name;
+    const foodImage = new Image();
+    foodImage.src = imageSrc;
+    foodImage.alt = "Food";
+    const foodParagraph = document.createElement('p');
+    foodParagraph.textContent = description;
+
+    foodItem.appendChild(foodName); foodItem.appendChild(foodImage); foodItem.appendChild(foodParagraph);
+
+    return foodItem;
+}
+
+const mainMenuComponent = function()
+{
+    const mainElement = document.createElement('main');
+    const mainHeading = document.createElement('h2');
+    mainHeading.textContent = "Menu";
+    const list = document.createElement('ul');
+    list.appendChild(foodItemComponent('Burger', '#', "Made from the finest beef sourced from local farmer, this filling meal is no competition "));
+    list.appendChild(foodItemComponent('Soda', '#', "A proprietary mixture using ingredients sourced from the antartic, this drink will leave you refreshed and revitalised"));
+    list.appendChild(foodItemComponent('Rotten Eyeballs', '#', ''));
+    list.appendChild(foodItemComponent('Steamed Crab', '#', "One of our more exquisite dishes. Sourced from the Himalayas Mountains, these crabs are part fungus."));
+
+    mainElement.appendChild(mainHeading); mainElement.appendChild(list);
+
+    return mainElement;
+}
+
+const main404Component = function()
+{
+    const mainElement = document.createElement('main');
+    const mainHeading = document.createElement('h2');
+    mainHeading.textContent = "404! Content Not Found!";
+    mainElement.appendChild(mainHeading);
+    return mainElement;
+}
+
 const footerComponent = function()
 {
     const footerElement = document.createElement('footer');
@@ -95,18 +158,35 @@ const loadHome = function()
     console.log("Loading home!")
     const content = document.getElementById('content');
     content.appendChild(headerComponent());
-    content.appendChild(mainComponent());
+    content.appendChild(mainHomeComponent());
     content.appendChild(footerComponent());
 }
 
 const loadMenu = function()
 {
     console.log("Loading menus!");
+    const content = document.getElementById('content');
+    content.appendChild(headerComponent());
+    content.appendChild(mainMenuComponent());
+    content.appendChild(footerComponent());
 }
 
 const loadContact = function()
 {
     console.log("loading contacts!");
+    const content = document.getElementById('content');
+    content.appendChild(headerComponent());
+    content.appendChild(mainContactComponent());
+    content.appendChild(footerComponent());
 }
 
-export {loadHome, loadMenu, loadContact};
+const load404 = function()
+{
+    console.log("Empty page");
+    const content = document.getElementById('content');
+    content.appendChild(headerComponent());
+    content.appendChild(main404Component());
+    content.appendChild(footerComponent());
+}
+
+export {loadHome, loadMenu, loadContact, load404};
